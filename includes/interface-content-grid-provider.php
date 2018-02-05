@@ -20,7 +20,6 @@ interface Content_Grid_Provider {
 	 * @return string Provider name
 	 */
 	public function get_name(): string;
-
 	/**
 	 * Get provider acf label, i.e. "Wysiwyg"
 	 *

@@ -14,9 +14,16 @@ if ( ! \interface_exists( '\\Dekode\\Hogan\\Content_Grid_Provider' ) ) {
 }
 
 /**
- * Wysiwyg Content Grid Provider class for Hogan Content Grid
+ * Text Content Grid Provider class for Hogan Content Grid
  */
-class Wysiwyg_Provider implements Content_Grid_Provider {
+class Text_Provider implements Content_Grid_Provider {
+
+	/**
+	 * WYSIWYG content for use in template.
+	 *
+	 * @var string $content
+	 */
+	public $content;
 
 	/**
 	 * Get provider acf name
@@ -24,7 +31,7 @@ class Wysiwyg_Provider implements Content_Grid_Provider {
 	 * @return string Provider name
 	 */
 	public function get_name(): string {
-		return 'wysiwyg_content';
+		return 'text_provider';
 	}
 
 	/**
@@ -43,7 +50,7 @@ class Wysiwyg_Provider implements Content_Grid_Provider {
 	 *
 	 * @return array ACF fields
 	 */
-	public function get_provider_fields( string $field_key ): array {
+	public function get_provider_fields( string $field_key ) : array {
 		$provider_name = $this->get_name();
 		$fields        = [
 			[
@@ -68,9 +75,21 @@ class Wysiwyg_Provider implements Content_Grid_Provider {
 	 *
 	 * @return string Content Grid HTML
 	 */
-	public function get_content_grid_html( array $raw_content ): string {
-		//todo: use template which can be overridden
-		return $raw_content['content'];
+	public function get_content_grid_html( array $raw_content ) : string {
+		$this->content = $raw_content['content'];
+
+		$template_part = HOGAN_CONTENT_GRID_PATH . 'assets/parts/template-text.php';
+		$template_part = apply_filters( 'hogan/module/content_grid/template/text', $template_part, $this );
+
+		if ( ! file_exists( $template_part ) || 0 !== validate_file( $template_part ) ) {
+			return '';
+		}
+
+		ob_start();
+		// Include provider template.
+		include $template_part;
+
+		return ob_get_clean();
 	}
 
 	/**
@@ -80,6 +99,7 @@ class Wysiwyg_Provider implements Content_Grid_Provider {
 	 */
 	public function enabled(): bool {
 		$enabled = apply_filters( 'hogan/module/content_grid/' . $this->get_name() . '/enabled', true ) ?? false;
+
 		return $enabled;
 	}
 }

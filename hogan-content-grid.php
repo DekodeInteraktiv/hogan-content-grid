@@ -25,6 +25,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+define( 'HOGAN_CONTENT_GRID_PATH', plugin_dir_path( __FILE__ ) );
+
 add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_textdomain' );
 add_action( 'hogan/include_modules', __NAMESPACE__ . '\\register_module' );
 add_action( 'hogan/module/content_grid/register_providers', __NAMESPACE__ . '\\register_default_content_grid_providers' );
@@ -57,10 +59,10 @@ function register_module() {
  */
 function register_default_content_grid_providers( \Dekode\Hogan\Content_Grid $module ) {
 
-	require_once 'includes/content-grid-providers/class-wysiwyg-provider.php';
+	require_once 'includes/content-grid-providers/class-text-provider.php';
 
-	if ( class_exists( '\\Dekode\\Hogan\\Wysiwyg_Provider' ) ) {
-		$module->register_content_grid_provider( new \Dekode\Hogan\Wysiwyg_Provider() );
+	if ( class_exists( '\\Dekode\\Hogan\\Text_Provider' ) ) {
+		$module->register_content_grid_provider( new \Dekode\Hogan\Text_Provider() );
 	}
 
 }

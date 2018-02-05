@@ -42,7 +42,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 		public function __construct() {
 
 			$this->label    = __( 'Content Grid', 'hogan-content-grid' );
-			$this->template = __DIR__ . '/../assets/template.php';
+			$this->template = HOGAN_CONTENT_GRID_PATH . 'assets/template.php';
 
 			parent::__construct();
 		}
@@ -59,19 +59,20 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 			// Heading field can be disabled using filter hogan/module/form/heading/enabled (true/false).
 			hogan_append_heading_field( $fields, $this );
 
-			//TODO: Lead text
-
-			array_push( $fields, [
-				'key'          => $this->field_key . '_flex', //hogan_module_content_grid_flex
-				'label'        => '',
-				'name'         => 'flex_grid',
-				'type'         => 'flexible_content',
-				'button_label' => esc_html__( 'Add content', 'hogan-content-grid' ),
-				'wrapper'      => [
-					'class' => 'grid-layouts',
-				],
-				'layouts'      => $this->_get_select_field_choices(),
-			] );
+			// TODO: Lead text
+			array_push(
+				$fields, [
+					'key'          => $this->field_key . '_flex', // hogan_module_content_grid_flex
+					'label'        => '',
+					'name'         => 'flex_grid',
+					'type'         => 'flexible_content',
+					'button_label' => esc_html__( 'Add content', 'hogan-content-grid' ),
+					'wrapper'      => [
+						'class' => 'grid-layouts',
+					],
+					'layouts'      => $this->_get_select_field_choices(),
+				]
+			);
 
 			return $fields;
 		}
@@ -89,7 +90,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 		 * Map raw fields from acf to object variable.
 		 *
 		 * @param array $raw_content Content values.
-		 * @param int $counter Module location in page layout.
+		 * @param int   $counter Module location in page layout.
 		 *
 		 * @return void
 		 */
@@ -146,7 +147,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 		 * @return array $layouts
 		 */
 		private function _get_select_field_choices(): array {
-			// Include Form Provider interface before including form providers.
+			// Include Content Grid Provider interface before including content grid providers.
 			require_once 'interface-content-grid-provider.php';
 
 			do_action( 'hogan/module/content_grid/register_providers', $this );

@@ -28,7 +28,7 @@ if ( ! empty( $this->heading ) ) {
 //echo $this->get_content_grid_html();
 // @codingStandardsIgnoreEnd
 ?>
-<div class="hogan-grid hogan-grid-text-center">
+<div class="hogan-content-grid">
 	<div class="hogan-grid-inner">
 		<?php
 		foreach ( $this->collection as $content ) :
@@ -36,9 +36,7 @@ if ( ! empty( $this->heading ) ) {
 			//todo: Get html from front with filter her to change the template
 			?>
 			<div class="<?php echo esc_attr( $classnames ); ?>">
-				<?php
-				echo $content; // WPCS: XSS OK.
-				?>
+				<?php echo $content; // WPCS: XSS OK. ?>
 			</div>
 		<?php
 		endforeach;
