@@ -59,10 +59,15 @@ function register_module() {
  */
 function register_default_content_grid_providers( \Dekode\Hogan\Content_Grid $module ) {
 
-	require_once 'includes/content-grid-providers/class-text-provider.php';
+	require_once 'includes/content-grid-providers/class-text-content-grid-provider.php';
+	require_once 'includes/content-grid-providers/class-image-content-grid-provider.php';
 
-	if ( class_exists( '\\Dekode\\Hogan\\Text_Provider' ) ) {
-		$module->register_content_grid_provider( new \Dekode\Hogan\Text_Provider() );
+	if ( class_exists( '\\Dekode\\Hogan\\Text_Content_Grid_Provider' ) ) {
+		$module->register_content_grid_provider( new \Dekode\Hogan\Text_Content_Grid_Provider() );
+	}
+
+	if ( class_exists( '\\Dekode\\Hogan\\Image_Content_Grid_Provider' ) ) {
+		$module->register_content_grid_provider( new \Dekode\Hogan\Image_Content_Grid_Provider() );
 	}
 
 }

@@ -17,7 +17,7 @@ interface Content_Grid_Provider {
 	/**
 	 * Get provider identifier, i.e. "text"
 	 *
-	 * @return string Provider indentifier
+	 * @return string Provider identifier
 	 */
 	public function get_identifier() : string;
 
@@ -46,10 +46,4 @@ interface Content_Grid_Provider {
 	 */
 	public function get_content_grid_html( array $raw_content ): string;
 
-	/**
-	 * Finds whether a provider is enabled
-	 *
-	 * @return bool Returns TRUE if provider is enabled, FALSE otherwise.
-	 */
-	public function enabled() : bool;
 }

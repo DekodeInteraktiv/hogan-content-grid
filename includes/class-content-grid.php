@@ -73,8 +73,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 				'type'         => 'wysiwyg',
 				'key'          => $this->field_key . '_lead',
 				'name'         => 'lead',
-				'label'        => __( 'Lead Text', 'hogan-core' ),
-				'instructions' => apply_filters( 'hogan/module/content_grid/lead/instructions', '' ),
+				'label'        => __( 'Lead Text', 'hogan-content-grid' ),
+				'instructions' => apply_filters( 'hogan/module/content_grid/lead/instructions', 'Optional lead paragraph will show only if filled in.' ),
 				'tabs'         => apply_filters( 'hogan/module/content_grid/lead/tabs', 'visual' ),
 				'media_upload' => apply_filters( 'hogan/module/content_grid/lead/allow_media_upload', 0 ),
 				'toolbar'      => apply_filters( 'hogan/module/content_grid/lead/toolbar', 'hogan_caption' ),
@@ -83,7 +83,6 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 				],
 			] );
 
-			// TODO: Lead text
 			array_push(
 				$fields, [
 					'key'          => $this->field_key . '_flex', // hogan_module_content_grid_flex
@@ -176,6 +175,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 		 */
 		private function _get_select_field_choices(): array {
 			// Include Content Grid Provider interface before including content grid providers.
+			require_once 'class-base-content-grid-provider.php';
 			require_once 'interface-content-grid-provider.php';
 
 			do_action( 'hogan/module/content_grid/register_providers', $this );
