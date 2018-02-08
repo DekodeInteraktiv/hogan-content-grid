@@ -26,12 +26,12 @@ class Text_Provider implements Content_Grid_Provider {
 	public $content;
 
 	/**
-	 * Get provider acf name
+	 * Get provider identifier, i.e. "text"
 	 *
-	 * @return string Provider name
+	 * @return string Provider indentifier
 	 */
-	public function get_name(): string {
-		return 'text_provider';
+	public function get_identifier() : string {
+		return 'text';
 	}
 
 	/**
@@ -39,8 +39,8 @@ class Text_Provider implements Content_Grid_Provider {
 	 *
 	 * @return string Provider name
 	 */
-	public function get_label(): string {
-		return esc_html__( 'Content Editor', 'hogan-content-grid' );
+	public function get_name() : string {
+		return esc_html__( 'Text', 'hogan-content-grid' );
 	}
 
 	/**
@@ -51,17 +51,17 @@ class Text_Provider implements Content_Grid_Provider {
 	 * @return array ACF fields
 	 */
 	public function get_provider_fields( string $field_key ) : array {
-		$provider_name = $this->get_name();
+		$provider_identifier = $this->get_identifier();
 		$fields        = [
 			[
 				'type'         => 'wysiwyg',
 				'key'          => $field_key . '_content',
 				'name'         => 'content',
-				'label'        => __( 'Content Editor', 'hogan-content-grid' ),
-				'instructions' => apply_filters( 'hogan/module/content_grid/' . $provider_name . '/instructions', '' ),
-				'tabs'         => apply_filters( 'hogan/module/content_grid/' . $provider_name . '/tabs', 'all' ),
-				'media_upload' => apply_filters( 'hogan/module/content_grid/' . $provider_name . '/allow_media_upload', 1 ),
-				'toolbar'      => apply_filters( 'hogan/module/content_grid/' . $provider_name . '/toolbar', 'hogan' ),
+				'label'        => $this->get_name(),
+				'instructions' => apply_filters( 'hogan/module/content_grid/' . $provider_identifier . '/instructions', '' ),
+				'tabs'         => apply_filters( 'hogan/module/content_grid/' . $provider_identifier . '/tabs', 'all' ),
+				'media_upload' => apply_filters( 'hogan/module/content_grid/' . $provider_identifier . '/allow_media_upload', 1 ),
+				'toolbar'      => apply_filters( 'hogan/module/content_grid/' . $provider_identifier . '/toolbar', 'hogan' ),
 			],
 		];
 
@@ -98,7 +98,7 @@ class Text_Provider implements Content_Grid_Provider {
 	 * @return bool Returns TRUE if provider is enabled, FALSE otherwise.
 	 */
 	public function enabled(): bool {
-		$enabled = apply_filters( 'hogan/module/content_grid/' . $this->get_name() . '/enabled', true ) ?? false;
+		$enabled = apply_filters( 'hogan/module/content_grid/' . $this->get_identifier() . '/enabled', true ) ?? false;
 
 		return $enabled;
 	}

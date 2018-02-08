@@ -23,6 +23,13 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 	class Content_Grid extends Module {
 
 		/**
+		 * WYSIWYG lead for use in template.
+		 *
+		 * @var string $lead
+		 */
+		public $lead;
+
+		/**
 		 * Content Grid Provider collection
 		 *
 		 * @var array $collection
@@ -59,6 +66,23 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 			// Heading field can be disabled using filter hogan/module/form/heading/enabled (true/false).
 			hogan_append_heading_field( $fields, $this );
 
+			//hogan_append_lead_field( $fields, $this ); //Wait for lead component baked into core
+
+			array_push(
+				$fields, [
+				'type'         => 'wysiwyg',
+				'key'          => $this->field_key . '_lead',
+				'name'         => 'lead',
+				'label'        => __( 'Lead Text', 'hogan-core' ),
+				'instructions' => apply_filters( 'hogan/module/content_grid/lead/instructions', '' ),
+				'tabs'         => apply_filters( 'hogan/module/content_grid/lead/tabs', 'visual' ),
+				'media_upload' => apply_filters( 'hogan/module/content_grid/lead/allow_media_upload', 0 ),
+				'toolbar'      => apply_filters( 'hogan/module/content_grid/lead/toolbar', 'hogan_caption' ),
+				'wrapper'      => [
+					'class' => apply_filters( 'hogan/module/content_grid/lead/wrapper_class', 'small-height-editor' ),
+				],
+			] );
+
 			// TODO: Lead text
 			array_push(
 				$fields, [
@@ -90,19 +114,23 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 		 * Map raw fields from acf to object variable.
 		 *
 		 * @param array $raw_content Content values.
-		 * @param int   $counter Module location in page layout.
+		 * @param int $counter Module location in page layout.
 		 *
 		 * @return void
 		 */
 		public function load_args_from_layout_content( array $raw_content, int $counter = 0 ) {
 
+			$this->lead       = $raw_content['lead'];
 			$this->collection = [];
 
 			if ( isset( $raw_content['flex_grid'] ) && ! empty( $raw_content['flex_grid'] ) ) :
 				foreach ( $raw_content['flex_grid'] as $group ) {
 					$provider = $this->_get_provider( $group['acf_fc_layout'] );
 					if ( null !== $provider ) {
-						$this->collection[] = $provider->get_content_grid_html( $group );
+						$this->collection[] = [
+							'markup'   => $provider->get_content_grid_html( $group ),
+							'provider' => $provider->get_identifier(),
+						];
 					}
 				}
 			endif;
@@ -132,7 +160,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 
 			if ( is_array( $this->_providers ) && ! empty( $this->_providers ) ) {
 				foreach ( $this->_providers as $provider ) {
-					if ( $identifier === $provider->get_name() ) {
+					if ( $identifier === $provider->get_identifier() ) {
 						return $provider;
 					}
 				}
@@ -159,9 +187,9 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 						if ( is_array( $provider_content_grid ) && ! empty( $provider_content_grid ) ) {
 
 							$layouts[] = [
-								'key'        => $this->field_key . '_flex_' . $provider->get_name(),
-								'name'       => $provider->get_name(),
-								'label'      => $provider->get_label(),
+								'key'        => $this->field_key . '_flex_' . $provider->get_identifier(),
+								'name'       => $provider->get_identifier(),
+								'label'      => $provider->get_name(),
 								'display'    => 'block',
 								'sub_fields' => $provider_content_grid,
 							];

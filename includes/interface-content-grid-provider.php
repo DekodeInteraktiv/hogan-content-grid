@@ -15,17 +15,18 @@ namespace Dekode\Hogan;
 interface Content_Grid_Provider {
 
 	/**
-	 * Get provider acf name
+	 * Get provider identifier, i.e. "text"
 	 *
-	 * @return string Provider name
+	 * @return string Provider indentifier
 	 */
-	public function get_name(): string;
+	public function get_identifier() : string;
+
 	/**
-	 * Get provider acf label, i.e. "Wysiwyg"
+	 * Get provider acf label name
 	 *
 	 * @return string Provider name
 	 */
-	public function get_label(): string;
+	public function get_name() : string;
 
 	/**
 	 * Get provider fields
@@ -40,6 +41,7 @@ interface Content_Grid_Provider {
 	 * Get rendered content_grid HTML
 	 *
 	 * @param array $raw_content Content values.
+	 *
 	 * @return string Content Grid HTML
 	 */
 	public function get_content_grid_html( array $raw_content ): string;
@@ -49,5 +51,5 @@ interface Content_Grid_Provider {
 	 *
 	 * @return bool Returns TRUE if provider is enabled, FALSE otherwise.
 	 */
-	public function enabled(): bool;
+	public function enabled() : bool;
 }

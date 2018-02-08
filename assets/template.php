@@ -23,20 +23,21 @@ if ( ! empty( $this->heading ) ) {
 	printf( '<h2>%s</h2>', esc_html( $this->heading ) );
 }
 
-// @codingStandardsIgnoreStart
-// In content grid builder developers we trust. No need to validate/escape any data here.
-//echo $this->get_content_grid_html();
-// @codingStandardsIgnoreEnd
+if ( ! empty( $this->lead ) ) {
+	echo wp_kses_post( $this->lead );
+}
+
 ?>
 <div class="hogan-content-grid">
 	<div class="hogan-grid-inner">
 		<?php
-		foreach ( $this->collection as $content ) :
-			$classnames = hogan_classnames( 'hogan-content-grid-item' ); //todo: Add type?
-			//todo: Get html from front with filter her to change the template
+		foreach ( $this->collection as $card_args ) :
+			$classnames = hogan_classnames( 'hogan-content-grid-item', 'hogan-grid-item-type-' . $card_args['provider'] );
 			?>
 			<div class="<?php echo esc_attr( $classnames ); ?>">
-				<?php echo $content; // WPCS: XSS OK. ?>
+				<?php
+				echo $card_args['markup']; // WPCS: XSS OK.
+				?>
 			</div>
 		<?php
 		endforeach;
