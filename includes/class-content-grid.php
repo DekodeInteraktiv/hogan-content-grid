@@ -182,18 +182,16 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 			$layouts = [];
 			if ( is_array( $this->_providers ) && ! empty( $this->_providers ) ) {
 				foreach ( $this->_providers as $provider ) {
-					if ( true === $provider->enabled() ) {
-						$provider_content_grid = $provider->get_provider_fields( $this->field_key );
-						if ( is_array( $provider_content_grid ) && ! empty( $provider_content_grid ) ) {
+					$provider_content_grid = $provider->get_provider_fields( $this->field_key );
+					if ( is_array( $provider_content_grid ) && ! empty( $provider_content_grid ) ) {
 
-							$layouts[] = [
-								'key'        => $this->field_key . '_flex_' . $provider->get_identifier(),
-								'name'       => $provider->get_identifier(),
-								'label'      => $provider->get_name(),
-								'display'    => 'block',
-								'sub_fields' => $provider_content_grid,
-							];
-						}
+						$layouts[] = [
+							'key'        => $this->field_key . '_flex_' . $provider->get_identifier(),
+							'name'       => $provider->get_identifier(),
+							'label'      => $provider->get_name(),
+							'display'    => 'block',
+							'sub_fields' => $provider_content_grid,
+						];
 					}
 				}
 			}

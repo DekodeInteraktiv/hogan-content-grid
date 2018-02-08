@@ -39,14 +39,4 @@ abstract class Base_Content_Grid_Provider {
 		return ob_get_clean();
 	}
 
-	/**
-	 * Finds whether a provider is enabled
-	 *
-	 * @return bool Returns TRUE if provider is enabled, FALSE otherwise.
-	 */
-	public function enabled(): bool {
-		$enabled = apply_filters( 'hogan/module/content_grid/' . $this->get_identifier() . '/enabled', true ) ?? false;
-
-		return $enabled;
-	}
 }

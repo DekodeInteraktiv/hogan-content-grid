@@ -58,16 +58,18 @@ function register_module() {
  * @param \Dekode\Hogan\Content_Grid $module Content Grid instance.
  */
 function register_default_content_grid_providers( \Dekode\Hogan\Content_Grid $module ) {
+	foreach (
+		$providers = apply_filters( 'hogan/module/content_grid/providers/enabled', [
+			'text',
+			'image',
+		] ) as $provider
+	) {
+		require_once 'includes/content-grid-providers/class-' . $provider . '-content-grid-provider.php';
 
-	require_once 'includes/content-grid-providers/class-text-content-grid-provider.php';
-	require_once 'includes/content-grid-providers/class-image-content-grid-provider.php';
+		$provider_classname = '\\Dekode\\Hogan\\' . ucfirst( $provider ) . '_Content_Grid_Provider';
 
-	if ( class_exists( '\\Dekode\\Hogan\\Text_Content_Grid_Provider' ) ) {
-		$module->register_content_grid_provider( new \Dekode\Hogan\Text_Content_Grid_Provider() );
+		if ( class_exists( $provider_classname ) ) {
+			$module->register_content_grid_provider( new $provider_classname() );
+		}
 	}
-
-	if ( class_exists( '\\Dekode\\Hogan\\Image_Content_Grid_Provider' ) ) {
-		$module->register_content_grid_provider( new \Dekode\Hogan\Image_Content_Grid_Provider() );
-	}
-
 }

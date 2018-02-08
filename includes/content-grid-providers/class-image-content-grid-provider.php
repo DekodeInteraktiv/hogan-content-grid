@@ -99,9 +99,8 @@ class Image_Content_Grid_Provider extends Base_Content_Grid_Provider implements 
 	 */
 	public function get_content_grid_html( array $raw_content ): string {
 
-		$provider_identifier = $this->get_identifier();
 		if ( ! empty( $raw_content['image_id'] ) ) {
-			$image = wp_parse_args( apply_filters( 'hogan/module/content_grid/' . $provider_identifier . '/image/args', [] ), [
+			$image = wp_parse_args( apply_filters( 'hogan/module/content_grid/' . $this->get_identifier() . '/image/args', [] ), [
 				'size' => 'medium',
 				'icon' => false,
 				'attr' => [],
@@ -109,29 +108,9 @@ class Image_Content_Grid_Provider extends Base_Content_Grid_Provider implements 
 
 			$image['id']   = $raw_content['image_id'];
 			$this->image   = $image;
-			$template_part = HOGAN_CONTENT_GRID_PATH . 'assets/parts/template-image.php';
-			$template_part = apply_filters( 'hogan/module/content_grid/template/image', $template_part, $this );
 
-			if ( ! file_exists( $template_part ) || 0 !== validate_file( $template_part ) ) {
-				return '';
-			}
-
-			ob_start();
-			// Include provider template.
-			include $template_part;
-
-			return ob_get_clean();
+			return parent::render_template();
 		}
 	}
 
-	/**
-	 * Finds whether a provider is enabled
-	 *
-	 * @return bool Returns TRUE if provider is enabled, FALSE otherwise.
-	 */
-	public function enabled(): bool {
-		$enabled = apply_filters( 'hogan/module/content_grid/' . $this->get_identifier() . '/enabled', true ) ?? false;
-
-		return $enabled;
-	}
 }
