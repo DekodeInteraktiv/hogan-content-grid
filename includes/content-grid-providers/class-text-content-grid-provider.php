@@ -58,6 +58,7 @@ class Text_Content_Grid_Provider extends Base_Content_Grid_Provider implements C
 				'key'          => $field_key . '_content',
 				'name'         => 'content',
 				'label'        => $this->get_name(),
+				'required'     => 1,
 				'delay'        => apply_filters( 'hogan/module/content_grid/' . $provider_identifier . '/content/delay', true ),
 				'instructions' => apply_filters( 'hogan/module/content_grid/' . $provider_identifier . '/content/instructions', '' ),
 				'tabs'         => apply_filters( 'hogan/module/content_grid/' . $provider_identifier . '/content/tabs', 'all' ),
