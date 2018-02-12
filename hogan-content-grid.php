@@ -60,7 +60,7 @@ function register_module() {
 function register_default_content_grid_providers( \Dekode\Hogan\Content_Grid $module ) {
 
 	//Option 1
-	$providers = apply_filters( 'hogan/module/content_grid/providers/enabled', [
+	/*$providers = apply_filters( 'hogan/module/content_grid/providers/enabled', [
 		'text',
 		'image',
 	] );
@@ -82,21 +82,34 @@ function register_default_content_grid_providers( \Dekode\Hogan\Content_Grid $mo
 			default;
 
 		}
-	}
+	}*/
 
 	//Or option 2?
-	/*foreach (
+	foreach (
 		$providers = apply_filters( 'hogan/module/content_grid/providers/enabled', [
-			'text',
-			'image',
+			'standard' => [
+				'file_path' => 'includes/content-grid-providers/class-standard-content-grid-provider.php',
+				'class'     => '\\Dekode\\Hogan\\Standard_Content_Grid_Provider',
+				'enabled'   => true,
+			],
+			'text'     => [
+				'file_path' => 'includes/content-grid-providers/class-text-content-grid-provider.php',
+				'class'     => '\\Dekode\\Hogan\\Text_Content_Grid_Provider',
+				'enabled'   => false,
+			],
+			'image'    => [
+				'file_path' => 'includes/content-grid-providers/class-image-content-grid-provider.php',
+				'class'     => '\\Dekode\\Hogan\\Image_Content_Grid_Provider',
+				'enabled'   => false,
+			],
 		] ) as $provider
 	) {
-		require_once 'includes/content-grid-providers/class-' . $provider . '-content-grid-provider.php';
 
-		$provider_classname = '\\Dekode\\Hogan\\' . ucfirst( $provider ) . '_Content_Grid_Provider';
-
-		if ( class_exists( $provider_classname ) ) {
-			$module->register_content_grid_provider( new $provider_classname() );
+		if ( isset( $provider['enabled'] ) && ! empty( $provider['enabled'] ) ) {
+			require_once $provider['file_path'];
+			if ( class_exists( $provider['class'] ) ) {
+				$module->register_content_grid_provider( new $provider['class']() );
+			}
 		}
-	}*/
+	}
 }

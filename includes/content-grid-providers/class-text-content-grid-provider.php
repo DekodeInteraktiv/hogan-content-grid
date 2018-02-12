@@ -9,7 +9,7 @@ declare( strict_types = 1 );
 
 namespace Dekode\Hogan;
 
-if (  ! \class_exists( '\\Dekode\\Hogan\\Base_Content_Grid_Provider' ) || ! \interface_exists( '\\Dekode\\Hogan\\Content_Grid_Provider' ) ) {
+if ( ! \class_exists( '\\Dekode\\Hogan\\Base_Content_Grid_Provider' ) || ! \interface_exists( '\\Dekode\\Hogan\\Content_Grid_Provider' ) ) {
 	return;
 }
 

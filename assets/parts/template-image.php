@@ -23,7 +23,7 @@ if ( empty( $this->image ) ) {
 
 printf( '<figure class="%s">',
 	esc_attr( hogan_classnames(
-		apply_filters( 'hogan/module/content_grid/image/figure_classes', [], $this )
+		apply_filters( 'hogan/module/content_grid/image/image/figure_classes', [], $this )
 	) )
 );
 
