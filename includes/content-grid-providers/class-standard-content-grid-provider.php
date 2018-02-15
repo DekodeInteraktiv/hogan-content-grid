@@ -51,7 +51,7 @@ class Standard_Content_Grid_Provider extends Base_Content_Grid_Provider implemen
 	 *
 	 * @return string Provider identifier
 	 */
-	public function get_identifier(): string {
+	public function get_identifier() : string {
 		return 'standard';
 	}
 
@@ -60,7 +60,7 @@ class Standard_Content_Grid_Provider extends Base_Content_Grid_Provider implemen
 	 *
 	 * @return string Provider name
 	 */
-	public function get_name(): string {
+	public function get_name() : string {
 		return esc_html__( 'Standard', 'hogan-content-grid' );
 	}
 
@@ -71,7 +71,7 @@ class Standard_Content_Grid_Provider extends Base_Content_Grid_Provider implemen
 	 *
 	 * @return array ACF fields
 	 */
-	public function get_provider_fields( string $field_key ): array {
+	public function get_provider_fields( string $field_key ) : array {
 		$provider_identifier = $this->get_identifier();
 
 		$constraints_defaults = [
@@ -129,7 +129,6 @@ class Standard_Content_Grid_Provider extends Base_Content_Grid_Provider implemen
 			],
 		];
 
-
 		return $fields;
 	}
 
@@ -140,7 +139,7 @@ class Standard_Content_Grid_Provider extends Base_Content_Grid_Provider implemen
 	 *
 	 * @return string Content Grid HTML
 	 */
-	public function get_content_grid_html( array $raw_content ): string {
+	public function get_content_grid_html( array $raw_content ) : string {
 		if ( ! empty( $raw_content['image_id'] ) ) {
 			$image = wp_parse_args( apply_filters( 'hogan/module/content_grid/' . $this->get_identifier() . '/image/args', [] ), [
 				'size' => 'medium',

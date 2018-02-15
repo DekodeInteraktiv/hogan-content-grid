@@ -30,7 +30,7 @@ class Image_Content_Grid_Provider extends Base_Content_Grid_Provider implements 
 	 *
 	 * @return string Provider identifier
 	 */
-	public function get_identifier(): string {
+	public function get_identifier() : string {
 		return 'image';
 	}
 
@@ -39,7 +39,7 @@ class Image_Content_Grid_Provider extends Base_Content_Grid_Provider implements 
 	 *
 	 * @return string Provider name
 	 */
-	public function get_name(): string {
+	public function get_name() : string {
 		return esc_html__( 'Image', 'hogan-content-grid' );
 	}
 
@@ -50,7 +50,7 @@ class Image_Content_Grid_Provider extends Base_Content_Grid_Provider implements 
 	 *
 	 * @return array ACF fields
 	 */
-	public function get_provider_fields( string $field_key ): array {
+	public function get_provider_fields( string $field_key ) : array {
 
 		$provider_identifier = $this->get_identifier();
 
@@ -97,7 +97,7 @@ class Image_Content_Grid_Provider extends Base_Content_Grid_Provider implements 
 	 *
 	 * @return string Content Grid HTML
 	 */
-	public function get_content_grid_html( array $raw_content ): string {
+	public function get_content_grid_html( array $raw_content ) : string {
 
 		if ( ! empty( $raw_content['image_id'] ) ) {
 			$image = wp_parse_args( apply_filters( 'hogan/module/content_grid/' . $this->get_identifier() . '/image/args', [] ), [

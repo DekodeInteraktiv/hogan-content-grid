@@ -1,0 +1,83 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Hogan Module: Content Grid\n"
+"POT-Creation-Date: 2018-02-15 22:14+0100\n"
+"PO-Revision-Date: 2018-02-15 22:17+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nb_NO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: hogan-content-grid.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: includes/class-content-grid.php:44
+msgid "Content Grid"
+msgstr "Innholdskolonner"
+
+#: includes/class-content-grid.php:63
+msgid "Add content"
+msgstr "Legg til innhold"
+
+#: includes/content-grid-providers/class-image-content-grid-provider.php:43
+msgid "Image"
+msgstr "Bilde"
+
+#: includes/content-grid-providers/class-image-content-grid-provider.php:75
+#: includes/content-grid-providers/class-standard-content-grid-provider.php:95
+msgid "Add Image"
+msgstr "Legg til bilde"
+
+#: includes/content-grid-providers/class-standard-content-grid-provider.php:64
+msgid "Standard"
+msgstr "Standard"
+
+#: includes/content-grid-providers/class-standard-content-grid-provider.php:112
+msgid "Title"
+msgstr "Tittel"
+
+#: includes/content-grid-providers/class-standard-content-grid-provider.php:119
+msgid "Add Text"
+msgstr "Legg til tekst"
+
+#: includes/content-grid-providers/class-standard-content-grid-provider.php:126
+msgid "Call to action"
+msgstr "Lenke"
+
+#: includes/content-grid-providers/class-standard-content-grid-provider.php:160
+msgid "Read more"
+msgstr "Les mer"
+
+#: includes/content-grid-providers/class-text-content-grid-provider.php:43
+msgid "Text"
+msgstr "Tekst"
+
+#. Plugin Name of the plugin/theme
+msgid "Hogan Module: Content Grid"
+msgstr "Hogan-modul: Innholdskolonner"
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/dekodeinteraktiv/hogan-content-grid"
+msgstr "https://github.com/dekodeinteraktiv/hogan-content-grid"
+
+#. Description of the plugin/theme
+msgid "Content Grid Module for Hogan."
+msgstr "Innholdskolonnermodul for Hogan"
+
+#. Author of the plugin/theme
+msgid "Dekode"
+msgstr "Dekode"
+
+#. Author URI of the plugin/theme
+msgid "https://dekode.no"
+msgstr "https://dekode.no"
