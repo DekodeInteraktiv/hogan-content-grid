@@ -23,13 +23,6 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 	class Content_Grid extends Module {
 
 		/**
-		 * WYSIWYG lead for use in template.
-		 *
-		 * @var string $lead
-		 */
-		public $lead;
-
-		/**
 		 * Content Grid Provider collection
 		 *
 		 * @var array $collection
@@ -61,30 +54,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 		 */
 		public function get_fields(): array {
 
-			$fields = [];
-
-			// Heading field can be disabled using filter hogan/module/form/heading/enabled (true/false).
-			hogan_append_heading_field( $fields, $this );
-
-			//hogan_append_lead_field( $fields, $this ); //Wait for lead component baked into core
-
-			array_push(
-				$fields, [
-				'type'         => 'wysiwyg',
-				'key'          => $this->field_key . '_lead',
-				'name'         => 'lead',
-				'label'        => __( 'Lead Text', 'hogan-content-grid' ),
-				'instructions' => apply_filters( 'hogan/module/content_grid/lead/instructions', 'Optional lead paragraph will show only if filled in.' ),
-				'tabs'         => apply_filters( 'hogan/module/content_grid/lead/tabs', 'visual' ),
-				'media_upload' => apply_filters( 'hogan/module/content_grid/lead/allow_media_upload', 0 ),
-				'toolbar'      => apply_filters( 'hogan/module/content_grid/lead/toolbar', 'hogan_caption' ),
-				'wrapper'      => [
-					'class' => apply_filters( 'hogan/module/content_grid/lead/wrapper_class', 'small-height-editor' ),
-				],
-			] );
-
-			array_push(
-				$fields, [
+			$fields = [
+				[
 					'key'          => $this->field_key . '_flex', // hogan_module_content_grid_flex
 					'label'        => '',
 					'name'         => 'flex_grid',
@@ -94,8 +65,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 						'class' => 'grid-layouts',
 					],
 					'layouts'      => $this->_get_select_field_choices(),
-				]
-			);
+				],
+			];
 
 			return $fields;
 		}
@@ -119,7 +90,6 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 		 */
 		public function load_args_from_layout_content( array $raw_content, int $counter = 0 ) {
 
-			$this->lead       = $raw_content['lead'];
 			$this->collection = [];
 
 			if ( isset( $raw_content['flex_grid'] ) && ! empty( $raw_content['flex_grid'] ) ) :

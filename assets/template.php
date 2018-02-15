@@ -19,16 +19,6 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Content_Grid ) ) {
 	return; // Exit if accessed directly.
 }
 
-if ( ! empty( $this->heading ) ) {
-	hogan_component( 'heading', [
-		'title' => $this->heading,
-	] );
-}
-
-if ( ! empty( $this->lead ) ) {
-	echo wp_kses_post( $this->lead );
-}
-
 ?>
 <div class="hogan-content-grid">
 	<div class="hogan-grid-inner">

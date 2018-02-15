@@ -25,6 +25,10 @@ abstract class Base_Content_Grid_Provider {
 	 */
 	protected function render_template(): string {
 
+		if ( true !== $this->validate_args() ) {
+			return '';
+		}
+
 		$template_part = HOGAN_CONTENT_GRID_PATH . 'assets/parts/template-' . $this->get_identifier() . '.php';
 		$template_part = apply_filters( 'hogan/module/content_grid/template/' . $this->get_identifier(), $template_part, $this );
 
@@ -37,6 +41,15 @@ abstract class Base_Content_Grid_Provider {
 		include $template_part;
 
 		return ob_get_clean();
+	}
+
+	/**
+	 * Validate sub module content before template is loaded.
+	 *
+	 * @return bool Whether validation of the sub module is successful / filled with content.
+	 */
+	protected function validate_args() {
+		return true;
 	}
 
 }
