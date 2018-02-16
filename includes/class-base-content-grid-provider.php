@@ -9,6 +9,9 @@ declare( strict_types = 1 );
 
 namespace Dekode\Hogan;
 
+/**
+ * The base class for content grid providers.
+ */
 abstract class Base_Content_Grid_Provider {
 
 	/**
