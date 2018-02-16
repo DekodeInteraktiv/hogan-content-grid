@@ -30,7 +30,7 @@ class Text_Content_Grid_Provider extends Base_Content_Grid_Provider implements C
 	 *
 	 * @return string Provider identifier
 	 */
-	public function get_identifier(): string {
+	public function get_identifier() : string {
 		return 'text';
 	}
 
@@ -39,7 +39,7 @@ class Text_Content_Grid_Provider extends Base_Content_Grid_Provider implements C
 	 *
 	 * @return string Provider name
 	 */
-	public function get_name(): string {
+	public function get_name() : string {
 		return esc_html__( 'Text', 'hogan-content-grid' );
 	}
 
@@ -50,7 +50,7 @@ class Text_Content_Grid_Provider extends Base_Content_Grid_Provider implements C
 	 *
 	 * @return array ACF fields
 	 */
-	public function get_provider_fields( string $field_key ): array {
+	public function get_provider_fields( string $field_key ) : array {
 		$provider_identifier = $this->get_identifier();
 		$fields              = [
 			[
@@ -77,7 +77,7 @@ class Text_Content_Grid_Provider extends Base_Content_Grid_Provider implements C
 	 *
 	 * @return string Content Grid HTML
 	 */
-	public function get_content_grid_html( array $raw_content ): string {
+	public function get_content_grid_html( array $raw_content ) : string {
 		$this->content = $raw_content['content'];
 
 		return parent::render_template();

@@ -52,11 +52,11 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 		 *
 		 * @return array $fields Fields for this module
 		 */
-		public function get_fields(): array {
+		public function get_fields() : array {
 
 			$fields = [
 				[
-					'key'          => $this->field_key . '_flex', // hogan_module_content_grid_flex
+					'key'          => $this->field_key . '_flex',
 					'label'        => '',
 					'name'         => 'flex_grid',
 					'type'         => 'flexible_content',
@@ -64,7 +64,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 					'wrapper'      => [
 						'class' => 'grid-layouts',
 					],
-					'layouts'      => $this->_get_select_field_choices(),
+					'layouts'      => $this->get_select_field_choices(),
 				],
 			];
 
@@ -84,7 +84,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 		 * Map raw fields from acf to object variable.
 		 *
 		 * @param array $raw_content Content values.
-		 * @param int $counter Module location in page layout.
+		 * @param int   $counter Module location in page layout.
 		 *
 		 * @return void
 		 */
@@ -94,7 +94,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 
 			if ( isset( $raw_content['flex_grid'] ) && ! empty( $raw_content['flex_grid'] ) ) :
 				foreach ( $raw_content['flex_grid'] as $group ) {
-					$provider = $this->_get_provider( $group['acf_fc_layout'] );
+					$provider = $this->get_provider( $group['acf_fc_layout'] );
 					if ( null !== $provider ) {
 						$this->collection[] = [
 							'markup'   => $provider->get_content_grid_html( $group ),
@@ -125,7 +125,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 		 *
 		 * @return Content_Grid_Provider|null $provider Provider instance.
 		 */
-		private function _get_provider( string $identifier ) {
+		private function get_provider( string $identifier ) {
 
 			if ( is_array( $this->_providers ) && ! empty( $this->_providers ) ) {
 				foreach ( $this->_providers as $provider ) {
@@ -143,7 +143,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 		 *
 		 * @return array $layouts
 		 */
-		private function _get_select_field_choices(): array {
+		private function get_select_field_choices() : array {
 			// Include Content Grid Provider interface before including content grid providers.
 			require_once 'class-base-content-grid-provider.php';
 			require_once 'interface-content-grid-provider.php';

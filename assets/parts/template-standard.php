@@ -9,6 +9,7 @@
  * $this->title (string|null) Title
  * $this->text (string|null) Text content / Description
  * $this->call_to_action (array|null)  Call to action link.
+ *
  * @package Hogan
  */
 
