@@ -5,6 +5,7 @@
  * $this is an instance of the Image object.
  * Available properties:
  * $this->image (array|null) Image.
+ * $this->image_link (array|null) Image Link.
  *
  * @package Hogan
  */
@@ -21,11 +22,22 @@ if ( empty( $this->image ) ) {
 	return;
 }
 
-printf( '<figure class="%s">',
-	esc_attr( hogan_classnames(
-		apply_filters( 'hogan/module/content_grid/image/image/figure_classes', [], $this )
-	) )
+printf(
+	'<figure class="%s">',
+	esc_attr(
+		hogan_classnames(
+			apply_filters( 'hogan/module/content_grid/image/image/figure_classes', [], $this )
+		)
+	)
 );
+
+if ( ! empty( $this->image_link ) ) :
+	printf(
+		'<a href="%s"%s>',
+		esc_url( $this->image_link['url'] ),
+		! empty( $this->image_link['target'] ) ? sprintf( ' target="%s"', esc_attr( $this->image_link['target'] ) ) : ''
+	);
+endif;
 
 echo wp_get_attachment_image(
 	$this->image['id'],
@@ -34,4 +46,7 @@ echo wp_get_attachment_image(
 	$this->image['attr']
 );
 
+if ( ! empty( $this->image_link ) ) :
+	echo '</a>';
+	endif;
 echo '</figure>';
