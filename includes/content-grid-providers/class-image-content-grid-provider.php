@@ -26,6 +26,13 @@ class Image_Content_Grid_Provider extends Base_Content_Grid_Provider implements 
 	public $image;
 
 	/**
+	 * Image Image Link
+	 *
+	 * @var array|null $image_link
+	 */
+	public $image_link;
+
+	/**
 	 * Get provider identifier, i.e. "text"
 	 *
 	 * @return string Provider identifier
@@ -75,6 +82,9 @@ class Image_Content_Grid_Provider extends Base_Content_Grid_Provider implements 
 				'label'         => __( 'Add Image', 'hogan-content-grid' ),
 				'required'      => 1,
 				'return_format' => 'id',
+				'wrapper'       => [
+					'width' => '50',
+				],
 				'preview_size'  => apply_filters( 'hogan/module/content_grid/' . $provider_identifier . '/image_size/preview_size', 'medium' ),
 				'library'       => apply_filters( 'hogan/module/content_grid/' . $provider_identifier . '/image_size/library', 'all' ),
 				'min_width'     => $constraints_args['min_width'],
@@ -84,6 +94,18 @@ class Image_Content_Grid_Provider extends Base_Content_Grid_Provider implements 
 				'min_size'      => $constraints_args['min_size'],
 				'max_size'      => $constraints_args['max_size'],
 				'mime_types'    => $constraints_args['mime_types'],
+			],
+			[
+				'type'          => 'link',
+				'key'           => $field_key . '_link',
+				'label'         => __( 'Image link', 'hogan-content-grid' ),
+				'name'          => 'image_link',
+				'instructions'  => __( 'Optional Image Link', 'hogan-content-grid' ),
+				'required'      => 0,
+				'return_format' => 'array',
+				'wrapper'       => [
+					'width' => '50',
+				],
 			],
 		];
 
@@ -108,8 +130,9 @@ class Image_Content_Grid_Provider extends Base_Content_Grid_Provider implements 
 				]
 			);
 
-			$image['id'] = $raw_content['image_id'];
-			$this->image = $image;
+			$image['id']      = $raw_content['image_id'];
+			$this->image      = $image;
+			$this->image_link = $raw_content['image_link'];
 
 			return parent::render_template();
 		}
