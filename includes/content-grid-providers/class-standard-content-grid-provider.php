@@ -92,7 +92,7 @@ class Standard_Content_Grid_Provider extends Base_Content_Grid_Provider implemen
 				'type'          => 'image',
 				'key'           => $field_key . '_image_id',
 				'name'          => 'image_id',
-				'label'         => __( 'Add Image', 'hogan-image' ),
+				'label'         => __( 'Add Image', 'hogan-content-grid' ),
 				'required'      => 0,
 				'return_format' => 'id',
 				'preview_size'  => apply_filters( 'hogan/module/image/image_size/preview_size', 'thumbnail' ),
@@ -157,7 +157,7 @@ class Standard_Content_Grid_Provider extends Base_Content_Grid_Provider implemen
 		// Call to action button.
 		if ( ! empty( $raw_content['cta'] ) ) {
 			$cta              = $raw_content['cta'];
-			$cta['title']     = $cta['title'] ?: __( 'Read more', 'hogan-banner' );
+			$cta['title']     = $cta['title'] ?: __( 'Read more', 'hogan-content-grid' );
 			$cta['classname'] = apply_filters( 'hogan/module/banner/cta_css_classes', '', $this );
 
 			$this->call_to_action = $cta;
