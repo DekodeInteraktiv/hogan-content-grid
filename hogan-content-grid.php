@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/dekodeinteraktiv/hogan-content-grid
  * GitHub Plugin URI: https://github.com/dekodeinteraktiv/hogan-content-grid
  * Description: Content Grid Module for Hogan.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Dekode
  * Author URI: https://dekode.no
  * License: GPL-3.0-or-later
@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'HOGAN_CONTENT_GRID_PATH', plugin_dir_path( __FILE__ ) );
 
 add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_textdomain' );
-add_action( 'hogan/include_modules', __NAMESPACE__ . '\\register_module' );
+add_action( 'hogan/include_modules', __NAMESPACE__ . '\\register_module', 10, 1 );
 add_action( 'hogan/module/content_grid/register_providers', __NAMESPACE__ . '\\register_default_content_grid_providers' );
 
 /**
@@ -43,13 +43,12 @@ function load_textdomain() {
 /**
  * Register module in Hogan
  *
+ * @param \Dekode\Hogan\Core $core Hogan Core instance.
  * @return void
  */
-function register_module() {
-
-	// Include form and register module class.
+function register_module( \Dekode\Hogan\Core $core ) {
 	require_once 'includes/class-content-grid.php';
-	\hogan_register_module( new \Dekode\Hogan\Content_Grid() );
+	$core->register_module( new \Dekode\Hogan\Content_Grid() );
 }
 
 /**
