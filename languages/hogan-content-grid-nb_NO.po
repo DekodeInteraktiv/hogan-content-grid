@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Hogan Module: Content Grid\n"
-"POT-Creation-Date: 2018-02-15 22:14+0100\n"
-"PO-Revision-Date: 2018-02-15 22:17+0100\n"
+"POT-Creation-Date: 2018-04-05 14:35+0200\n"
+"PO-Revision-Date: 2018-04-05 14:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -20,6 +20,8 @@ msgstr ""
 "_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SearchPathExcluded-1: wp-content\n"
+"X-Poedit-SearchPathExcluded-2: vendor\n"
 
 #: includes/class-content-grid.php:44
 msgid "Content Grid"
@@ -29,14 +31,22 @@ msgstr "Innholdskolonner"
 msgid "Add content"
 msgstr "Legg til innhold"
 
-#: includes/content-grid-providers/class-image-content-grid-provider.php:43
+#: includes/content-grid-providers/class-image-content-grid-provider.php:50
 msgid "Image"
 msgstr "Bilde"
 
-#: includes/content-grid-providers/class-image-content-grid-provider.php:75
+#: includes/content-grid-providers/class-image-content-grid-provider.php:82
 #: includes/content-grid-providers/class-standard-content-grid-provider.php:95
 msgid "Add Image"
 msgstr "Legg til bilde"
+
+#: includes/content-grid-providers/class-image-content-grid-provider.php:101
+msgid "Image link"
+msgstr "Bildelenke"
+
+#: includes/content-grid-providers/class-image-content-grid-provider.php:103
+msgid "Optional Image Link"
+msgstr "Valgfri bildelenke"
 
 #: includes/content-grid-providers/class-standard-content-grid-provider.php:64
 msgid "Standard"
@@ -71,7 +81,7 @@ msgid "https://github.com/dekodeinteraktiv/hogan-content-grid"
 msgstr "https://github.com/dekodeinteraktiv/hogan-content-grid"
 
 #. Description of the plugin/theme
-msgid "Content Grid Module for Hogan."
+msgid "Content Grid Module for Hogan"
 msgstr "Innholdskolonnermodul for Hogan"
 
 #. Author of the plugin/theme
@@ -81,3 +91,13 @@ msgstr "Dekode"
 #. Author URI of the plugin/theme
 msgid "https://dekode.no"
 msgstr "https://dekode.no"
+
+#, fuzzy
+#~| msgid "Add Image"
+#~ msgid "Add module"
+#~ msgstr "Legg til bilde"
+
+#, fuzzy
+#~| msgid "Content Grid"
+#~ msgid "Content Modules"
+#~ msgstr "Innholdskolonner"

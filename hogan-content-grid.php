@@ -3,7 +3,7 @@
  * Plugin Name: Hogan Module: Content Grid
  * Plugin URI: https://github.com/dekodeinteraktiv/hogan-content-grid
  * GitHub Plugin URI: https://github.com/dekodeinteraktiv/hogan-content-grid
- * Description: Content Grid Module for Hogan.
+ * Description: Content Grid Module for Hogan
  * Version: 1.0.2
  * Author: Dekode
  * Author URI: https://dekode.no
