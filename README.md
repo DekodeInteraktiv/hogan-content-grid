@@ -5,4 +5,14 @@ Install the module using Composer `composer require dekodeinteraktiv/hogan-conte
 
 ## Available filters
 
-- Will be added soon
+`hogan/module/content_grid/providers/enabled` Enable/disable providers (Standard, text and image)
+
+Example:
+
+`function enable_image_provider( array $args ) : array {
+	$args ['image']['enabled']    = 1;
+	return $args;
+}
+add_filter( 'hogan/module/content_grid/providers/enabled', __NAMESPACE__ . '\\enable_image_provider' );`
+
+- More will be added soon
