@@ -149,6 +149,8 @@ class Standard_Content_Grid_Provider extends Base_Content_Grid_Provider implemen
 
 			$image['id'] = $raw_content['image_id'];
 			$this->image = $image;
+		} else {
+			$this->image = null;
 		}
 
 		$this->title = $raw_content['title'];
@@ -161,6 +163,8 @@ class Standard_Content_Grid_Provider extends Base_Content_Grid_Provider implemen
 			$cta['classname'] = apply_filters( 'hogan/module/banner/cta_css_classes', '', $this );
 
 			$this->call_to_action = $cta;
+		} else {
+			$this->call_to_action = null;
 		}
 
 		return parent::render_template();
