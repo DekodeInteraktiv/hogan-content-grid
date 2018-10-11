@@ -44,7 +44,7 @@ class Standard_Content_Grid_Provider extends Base_Content_Grid_Provider implemen
 	 *
 	 * @var array|null $call_to_action
 	 */
-	public $call_to_action = null;
+	public $call_to_action;
 
 	/**
 	 * Get provider identifier, i.e. "text"
@@ -141,10 +141,10 @@ class Standard_Content_Grid_Provider extends Base_Content_Grid_Provider implemen
 	 */
 	public function get_content_grid_html( array $raw_content ) : string {
 		
-		$this->title          = $raw_content['title'];
-		$this->text           = $raw_content['text'];
-		$this->call_to_action = $raw_content['cta'];
-		$this->image          = $raw_content['image_id'];
+		$this->title          = $raw_content['title'] ?: null;
+		$this->text           = $raw_content['text'] ?: null;
+		$this->call_to_action = $raw_content['cta'] ?: null;
+		$this->image          = $raw_content['image_id'] ?: null;
 		
 		if ( ! empty( $raw_content['image_id'] ) ) {
 			$image = wp_parse_args( apply_filters( 'hogan/module/content_grid/' . $this->get_identifier() . '/image/args', [] ), [
