@@ -158,7 +158,7 @@ class Standard_Content_Grid_Provider extends Base_Content_Grid_Provider implemen
 		}
 
 		// Call to action button.
-		if (  null !== $this->call_to_action ) {
+		if ( null !== $this->call_to_action ) {
 			$cta              = $raw_content['cta'];
 			$cta['title']     = $cta['title'] ?: __( 'Read more', 'hogan-content-grid' );
 			$cta['classname'] = apply_filters( 'hogan/module/banner/cta_css_classes', '', $this );
