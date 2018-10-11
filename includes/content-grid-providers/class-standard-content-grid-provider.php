@@ -146,7 +146,7 @@ class Standard_Content_Grid_Provider extends Base_Content_Grid_Provider implemen
 		$this->call_to_action = $raw_content['cta'] ?: null;
 		$this->image          = $raw_content['image_id'] ?: null;
 
-		if ( ! empty( $raw_content['image_id'] ) ) {
+		if ( null !== $this->image ) {
 			$image = wp_parse_args( apply_filters( 'hogan/module/content_grid/' . $this->get_identifier() . '/image/args', [] ), [
 				'size' => 'medium',
 				'icon' => false,
@@ -158,7 +158,7 @@ class Standard_Content_Grid_Provider extends Base_Content_Grid_Provider implemen
 		}
 
 		// Call to action button.
-		if ( ! empty( $raw_content['cta'] ) ) {
+		if (  null !== $this->call_to_action ) {
 			$cta              = $raw_content['cta'];
 			$cta['title']     = $cta['title'] ?: __( 'Read more', 'hogan-content-grid' );
 			$cta['classname'] = apply_filters( 'hogan/module/banner/cta_css_classes', '', $this );
