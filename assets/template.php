@@ -19,8 +19,12 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Content_Grid ) ) {
 	return; // Exit if accessed directly.
 }
 
+$classnames = hogan_classnames( apply_filters( 'hogan/module/content_grid/template/outer_classes', [
+	'hogan-content-grid',
+], $this ) );
+
 ?>
-<div class="hogan-content-grid">
+<div class="<?php echo esc_attr( $classnames ); ?>">
 	<div class="hogan-grid-inner">
 		<?php
 		foreach ( $this->collection as $card_args ) :
