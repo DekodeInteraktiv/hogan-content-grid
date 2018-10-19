@@ -26,6 +26,13 @@ class Standard_Content_Grid_Provider extends Base_Content_Grid_Provider implemen
 	public $image;
 
 	/**
+	 * Column label content
+	 *
+	 * @var string $label
+	 */
+	public $label;
+
+	/**
 	 * Column title content
 	 *
 	 * @var string $title
@@ -87,46 +94,71 @@ class Standard_Content_Grid_Provider extends Base_Content_Grid_Provider implemen
 		// Merge $args from filter with $defaults.
 		$constraints_args = wp_parse_args( apply_filters( 'hogan/module/content_grid/' . $provider_identifier . '/image_size/constraints', [] ), $constraints_defaults );
 
-		$fields = [
-			[
-				'type'          => 'image',
-				'key'           => $field_key . '_image_id',
-				'name'          => 'image_id',
-				'label'         => __( 'Add Image', 'hogan-content-grid' ),
-				'required'      => 0,
-				'return_format' => 'id',
-				'preview_size'  => apply_filters( 'hogan/module/image/image_size/preview_size', 'thumbnail' ),
-				'library'       => apply_filters( 'hogan/module/image/image_size/library', 'all' ),
-				'min_width'     => $constraints_args['min_width'],
-				'min_height'    => $constraints_args['min_height'],
-				'max_width'     => $constraints_args['max_width'],
-				'max_height'    => $constraints_args['max_height'],
-				'min_size'      => $constraints_args['min_size'],
-				'max_size'      => $constraints_args['max_size'],
-				'mime_types'    => $constraints_args['mime_types'],
-			],
-			[
-				'type'  => 'text',
-				'key'   => $field_key . '_title',
-				'name'  => 'title',
-				'label' => __( 'Title', 'hogan-content-grid' ),
+		/*
+		 * Image field.
+		 */
+		$fields[] = [
+			'type'          => 'image',
+			'key'           => $field_key . '_image_id',
+			'name'          => 'image_id',
+			'label'         => __( 'Add Image', 'hogan-content-grid' ),
+			'required'      => 0,
+			'return_format' => 'id',
+			'preview_size'  => apply_filters( 'hogan/module/image/image_size/preview_size', 'thumbnail' ), // todo: filter named wrong? Should be content_grid.
+			'library'       => apply_filters( 'hogan/module/image/image_size/library', 'all' ), // todo: filter named wrong? Should be content_grid.
+			'min_width'     => $constraints_args['min_width'],
+			'min_height'    => $constraints_args['min_height'],
+			'max_width'     => $constraints_args['max_width'],
+			'max_height'    => $constraints_args['max_height'],
+			'min_size'      => $constraints_args['min_size'],
+			'max_size'      => $constraints_args['max_size'],
+			'mime_types'    => $constraints_args['mime_types'],
+		];
 
-			],
-			[
-				'type'      => 'textarea',
-				'key'       => $field_key . '_text',
-				'name'      => 'text',
-				'label'     => __( 'Add Text', 'hogan-content-grid' ),
-				'rows'      => 4,
-				'new_lines' => '',
-			],
-			[
-				'type'          => 'link',
-				'key'           => $field_key . '_cta',
-				'label'         => __( 'Call to action', 'hogan-content-grid' ),
-				'name'          => 'cta',
-				'return_format' => 'array',
-			],
+		/*
+		 * Label field.
+		 */
+		if ( true === apply_filters( 'hogan/module/content_grid/standard/label/enabled', false ) ) {
+			$fields[] = [
+				'type'  => 'text',
+				'key'   => $field_key . '_label',
+				'name'  => 'label',
+				'label' => __( 'Label', 'hogan-content-grid' ),
+			];
+		}
+
+		/*
+		 * Title field.
+		 */
+		$fields[] = [
+			'type'  => 'text',
+			'key'   => $field_key . '_title',
+			'name'  => 'title',
+			'label' => __( 'Title', 'hogan-content-grid' ),
+
+		];
+
+		/*
+		 * Text field.
+		 */
+		$fields[] = [
+			'type'      => 'textarea',
+			'key'       => $field_key . '_text',
+			'name'      => 'text',
+			'label'     => __( 'Add Text', 'hogan-content-grid' ),
+			'rows'      => 4,
+			'new_lines' => '',
+		];
+
+		/*
+		 * Link field
+		 */
+		$fields[] = [
+			'type'          => 'link',
+			'key'           => $field_key . '_cta',
+			'label'         => __( 'Call to action', 'hogan-content-grid' ),
+			'name'          => 'cta',
+			'return_format' => 'array',
 		];
 
 		return $fields;
@@ -142,6 +174,7 @@ class Standard_Content_Grid_Provider extends Base_Content_Grid_Provider implemen
 	public function get_content_grid_html( array $raw_content ) : string {
 
 		$this->title          = $raw_content['title'] ?: null;
+		$this->label          = $raw_content['label'] ?: null;
 		$this->text           = $raw_content['text'] ?: null;
 		$this->call_to_action = $raw_content['cta'] ?: null;
 		$this->image          = $raw_content['image_id'] ?: null;

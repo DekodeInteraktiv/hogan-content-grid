@@ -40,6 +40,10 @@ if ( ! empty( $this->image ) ) {
 	echo '</figure>';
 }
 
+if ( ! empty( $this->label ) ) {
+	echo '<span>' . esc_textarea( $this->label ) . '</span>';
+}
+
 if ( ! empty( $this->title ) ) {
 	hogan_component( 'heading', [
 		'title' => $this->title,

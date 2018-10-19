@@ -16,3 +16,5 @@ Example:
 add_filter( 'hogan/module/content_grid/providers/enabled', __NAMESPACE__ . '\\enable_image_provider' );`
 
 - More will be added soon
+
+`hogan/module/content_grid/standard/label/enabled` Enable/disable label field. Default disabled.

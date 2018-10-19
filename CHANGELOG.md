@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1]
+- Added filter `hogan/module/content_grid/template/outer_classes`
+- Added optional field for label with filter `hogan/module/content_grid/standard/label/enabled`
+
 ## [1.0.3]
 - Fixed bug where image/link from previous item in the grid was shown on items wihtout link/image.
 
