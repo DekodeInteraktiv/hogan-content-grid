@@ -174,7 +174,7 @@ class Standard_Content_Grid_Provider extends Base_Content_Grid_Provider implemen
 	public function get_content_grid_html( array $raw_content ) : string {
 
 		$this->title          = $raw_content['title'] ?: null;
-		$this->label          = $raw_content['label'] ?: null;
+		$this->label          = $raw_content['label'] ?? null;
 		$this->text           = $raw_content['text'] ?: null;
 		$this->call_to_action = $raw_content['cta'] ?: null;
 		$this->image          = $raw_content['image_id'] ?: null;

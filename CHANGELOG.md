@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.1.1]
+- Fixed php notice that showed up when label field was not enabled.
+
 ## [1.1]
 - Added filter `hogan/module/content_grid/template/outer_classes`
 - Added optional field for label with filter `hogan/module/content_grid/standard/label/enabled`
