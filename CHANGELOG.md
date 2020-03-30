@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.2]
+- Added filter `hogan/module/content_grid/template/inner_classes`
+- Added filter `hogan/module/content_grid/template/item_classes`
+
 ## [1.1.1]
 - Fixed php notice that showed up when label field was not enabled.
 

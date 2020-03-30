@@ -25,17 +25,23 @@ $classnames = hogan_classnames( apply_filters( 'hogan/module/content_grid/templa
 
 ?>
 <div class="<?php echo esc_attr( $classnames ); ?>">
-	<div class="hogan-grid-inner">
+	<?php
+	$classnames = hogan_classnames( apply_filters( 'hogan/module/content_grid/template/inner_classes', [
+		'hogan-grid-inner',
+	], $this ) );
+	?>
+	<div class="<?php echo esc_attr( $classnames ); ?>">
 		<?php
+		$classes = apply_filters( 'hogan/module/content_grid/template/item_classes', [ 'hogan-content-grid-item' ], $this );
 		foreach ( $this->collection as $card_args ) :
-			$classnames = hogan_classnames( 'hogan-content-grid-item', 'hogan-grid-item-type-' . $card_args['provider'] );
+			$classnames = hogan_classnames( $classes, 'hogan-grid-item-type-' . $card_args['provider'] );
 			?>
 			<div class="<?php echo esc_attr( $classnames ); ?>">
 				<?php
 				echo $card_args['markup']; // WPCS: XSS OK.
 				?>
 			</div>
-		<?php
+			<?php
 		endforeach;
 		?>
 	</div>
