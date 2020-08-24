@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.1.3]
+- Removed sanitize function `wp_kses_post` from Text content provider template.
+
 ## [1.1.2]
 - Added filter `hogan/module/content_grid/template/inner_classes`
 - Added filter `hogan/module/content_grid/template/item_classes`

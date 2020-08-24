@@ -18,4 +18,4 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Content_Grid_Provider ) ) {
 	return; // Exit if accessed directly.
 }
 
-echo wp_kses_post( $this->content );
+echo $this->content; // WPCS: XSS OK.
