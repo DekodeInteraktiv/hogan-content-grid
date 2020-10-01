@@ -90,6 +90,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Content_Grid' ) && class_exists( '\\Dekod
 		 */
 		public function load_args_from_layout_content( array $raw_content, int $counter = 0 ) {
 
+			do_action( 'hogan/module/content_grid/load_args_from_layout_content/before', $raw_content );
+
 			$this->collection = [];
 
 			if ( isset( $raw_content['flex_grid'] ) && ! empty( $raw_content['flex_grid'] ) ) :

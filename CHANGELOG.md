@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.1.4]
+- Added filter `hogan/module/content_grid/load_args_from_layout_content/before`.
+
 ## [1.1.3]
 - Removed sanitize function `wp_kses_post` from Text content provider template.
 
