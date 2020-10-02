@@ -23,7 +23,8 @@ if ( empty( $this->image ) ) {
 }
 
 printf(
-	'<figure class="%s">',
+	'<figure id="attachment_%d" class="%s">',
+	esc_attr( $this->image['id'] ),
 	esc_attr(
 		hogan_classnames(
 			apply_filters( 'hogan/module/content_grid/image/image/figure_classes', [], $this )
@@ -49,4 +50,7 @@ echo wp_get_attachment_image(
 if ( ! empty( $this->image_link ) ) :
 	echo '</a>';
 	endif;
+
+echo apply_filters( 'hogan/module/content_grid/' . $this->get_identifier() . '/image/after_image', '', $this->image['id'] ); // WPCS: XSS OK.
+
 echo '</figure>';

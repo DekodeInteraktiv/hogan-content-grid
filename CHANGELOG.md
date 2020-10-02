@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.5]
+Template changes for standard and image
+
+- Added id attribute to figure tag
+- Added filter after image
+
 ## [1.1.4]
 - Added filter `hogan/module/content_grid/load_args_from_layout_content/before`.
 

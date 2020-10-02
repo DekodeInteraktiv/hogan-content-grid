@@ -24,7 +24,8 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Content_Grid_Provider ) ) {
 if ( ! empty( $this->image ) ) {
 
 
-	printf( '<figure class="%s">',
+	printf( '<figure id="attachment_%d" class="%s">',
+		esc_attr( $this->image['id'] ),
 		esc_attr( hogan_classnames(
 			apply_filters( 'hogan/module/content_grid/standard/image/figure_classes', [], $this )
 		) )
@@ -36,6 +37,8 @@ if ( ! empty( $this->image ) ) {
 		$this->image['icon'],
 		$this->image['attr']
 	);
+
+	echo apply_filters( 'hogan/module/content_grid/' . $this->get_identifier() . '/image/after_image', '', $this->image['id'] ); // WPCS: XSS OK.
 
 	echo '</figure>';
 }
